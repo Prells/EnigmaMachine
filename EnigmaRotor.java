@@ -5,6 +5,12 @@ public class EnigmaRotor {
 	private char[] sequence = new char[26];
 	private int offset;
 	private int position;
+	/**
+	 * Creates an Enigma Rotor based on the number given, the offset to start at, and the position of the rotor
+	 * @param rotorNumber the number of the rotor to use
+	 * @param offset the offset to start the rotor at, 0 if start at the first letter
+	 * @param position the position of the rotor in the machine
+	 */
 	public EnigmaRotor(int rotorNumber, int offset, int position) {
 		this.rotorNumber = rotorNumber;
 		this.position = position;
@@ -51,16 +57,29 @@ public class EnigmaRotor {
 					break;
 		}
 	}
+	/**
+	 * Takes the given character and encrypts it
+	 * @param charToEncrypt the character to encrypt
+	 * @return the new encrypted character
+	 */
 	public char getChar(char charToEncrypt) {
 		char uppercase = Character.toUpperCase(charToEncrypt);
-		//System.out.println((int)uppercase);
+		//Convert the ASCII code to the proper position in the array
 		char c = sequence[(offset + uppercase - 65) % 26]; //minus 64 to convert ASCII code to 1 to 26 of proper position of that letter to the alphabet
 		
 		return c;
 	}
+	/**
+	 * Returns the offset that the rotor is set at
+	 * @return the offset of the rotor
+	 */
 	public int getOffset() {
 		return offset;
 	}
+	/**
+	 * Sets the offset of the rotor to a new offset
+	 * @param offset the new offset to set the rotor to
+	 */
 	public void setOffset(int offset) {
 		if(offset == 26) {
 			this.offset = 0;
